@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Login {% endblock %}
+
+{% block card_title %}Login{% endblock %}
+
+{% block content %}
+{% load django_bootstrap5 %}
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        
+        {% bootstrap_form form %}
+
+        {% if error %}
+            <span style="color: red;">{{ error }}</span>
+            <br><br>
+        {% endif %}
+        
+        <input class="btn btn-primary" type="submit" value="Entrar" />
+    </form>
+{% endblock %}

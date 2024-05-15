@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Tarefas {% endblock %}
+
+{% block card_title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+    <a type="button" class="btn btn-primary" href="{% url 'task-create' %}"><i class="fa-solid fa-plus"></i></a>
+
+    <div class="mt-3">
+        <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Completado</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Deletar</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% if tasks %}
+                    {% for task in tasks %}
+                        <tr>
+                            <th scope="row">{{ task.title }}</th>
+                            <td>{{ task.description }}</td>
+                            {% if  task.completed == True %}
+                                <td><i class="fa-solid fa-check"></i></td>
+                            {% else %}
+                                <td><i class="fa-solid fa-xmark"></i></td>
+                            {% endif %}
+                            
+                            <td>
+                                <a href="{% url 'task-update' pk=task.pk %}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'task-delete' pk=task.pk %}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <th scope="row" colspan="5" class="text-center">Não há terefas disponíveis no momento.</th>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

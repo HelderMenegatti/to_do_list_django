@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Deletar Tarefa {% endblock %}
+
+{% block card_title %}Deletar Tarefa - {{ object.title }}{% endblock %}
+
+{% block content %}
+
+    <h4>Tem certeteza que deseja excluir essa tarefa? A tarefa será apagada permanentemente.</h4>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar exclusão</button>
+        <a type="button" class="btn btn-success" href="{% url 'task-list' %}">Voltar</a>
+    </form>
+
+{% endblock %}

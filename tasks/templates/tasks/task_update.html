@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Editar Tarefa {% endblock %}
+
+{% block card_title %}Editar Tarefa - {{ object.title }}{% endblock %}
+
+{% block content %}
+{% load django_bootstrap5 %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-success">Salvar alterações</button>
+        <a type="button" class="btn btn-danger" href="{% url 'task-list' %}">Cancelar</a>
+    </form>
+{% endblock %}
